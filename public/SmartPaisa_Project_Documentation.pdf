@@ -1,0 +1,452 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [6 0 R 8 0 R 10 0 R 12 0 R] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 6031 >>
+stream
+0.06 0.12 0.18 rg 48 721.89 499.28 68 re f
+0.06 0.72 0.50 rg 48 721.89 5 68 re f
+1 1 1 rg
+BT /F2 15 Tf 64 763.89 Td (SmartPaisa: AI Personal Finance & Budgeting Platform) Tj ET
+0.75 0.92 0.85 rg
+BT /F1 9.2 Tf 64 743.89 Td (Complete Project Documentation, Problem Statement, System Architecture & Database Design) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 695.89 Td (1. Abstract) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 690.89 m 547.28 690.89 l S
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 677.89 Td (SmartPaisa is a full-stack, AI/ML-driven personal finance management platform designed) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 664.69 Td (specifically for Indian college students and young professionals. With the rapid adoption of) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 651.49 Td (instant digital payments \(UPI, QR codes, and digital wallets\), young earners and students make) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 638.29 Td (dozens of micro-transactions daily without visibility into their cumulative monthly burn rate.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 625.09 Td (SmartPaisa solves this problem by combining automated Indian merchant & UPI transaction) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 611.89 Td (categorization, multi-model machine learning expenditure forecasting, statistical anomaly) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 598.69 Td (detection, explainable financial health scoring, goal-based savings tracking, and a) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 585.49 Td (conversational AI Financial Advisor - all secured with Supabase PostgreSQL Row Level Security) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 572.29 Td (\(RLS\) and India DPDP Act 2023 compliance.) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 547.09 Td (2. Problem Statement) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 542.09 m 547.28 542.09 l S
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 525.09 Td (2.1 Background & Core Problem) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 511.09 Td (In India, over 75% of college students and early-career professionals rely on UPI \(Google Pay,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 497.89 Td (PhonePe, Paytm\) for daily micro-transactions - ranging from INR 20 tea stalls and metro rides) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 484.69 Td (to food delivery \(Swiggy/Zomato\) and quick-commerce \(Blinkit/Zepto\). Because digital payments) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 471.49 Td (remove the psychological friction of handing over physical cash, users suffer from frictionless) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 458.29 Td (overspending:) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 441.09 Td (* 1. Unmonitored Micro-Transactions: Small daily UPI payments accumulate into thousands of) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 428.29 Td (rupees by month-end without the user realizing where their allowance or salary went.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 412.99 Td (* 2. Lack of Indian Context in Global Finance Apps: Existing international budgeting tools) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 400.19 Td (fail to recognize Indian UPI descriptions, local merchants \(IRCTC, DMRC, Jio, Apollo,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 387.39 Td (Zepto\), or irregular student allowance cycles.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 372.09 Td (* 3. Reactive Instead of Predictive Tracking: Traditional expense trackers only show past) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 359.29 Td (spending after a budget is already blown, offering no forward-looking prediction of) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 346.49 Td (end-of-month expenditure or daily safe-spending limits.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 331.19 Td (* 4. Financial Illiteracy & Privacy Risks: Many commercial finance apps monetize user data) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 318.39 Td (through predatory loan ads and lack transparent, explainable financial guidance tailored to) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 305.59 Td (students.) Tj ET
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 286.29 Td (2.2 Limitations of Existing Systems vs. Proposed System \(SmartPaisa\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 272.29 Td (* Transaction Categorization: Existing trackers require manual input and fail on UPI strings) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 259.49 Td (-> SmartPaisa provides a 3-Tier AI Categorizer recognizing 100+ Indian merchants +) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 246.69 Td (CSV/PDF/Receipt OCR import.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 231.39 Td (* Budget Monitoring: Existing apps use static monthly caps -> SmartPaisa computes a live) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 218.59 Td (Dynamic Safe Daily Allowance and proactive AI category recommendations.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 203.29 Td (* Future Forecasting: Existing apps only plot historical spend -> SmartPaisa runs 4-Model ML) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 190.49 Td (Time-Series Forecasting \(Moving Avg, OLS, Random Forest, XGBoost\) with 95% Confidence) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 177.69 Td (Intervals.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 162.39 Td (* Anomaly Detection: Existing apps lack statistical outlier checks -> SmartPaisa combines) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 149.59 Td (Isolation Forest, Local Outlier Factor \(LOF\), Rolling Z-Score, and 48h Duplicate Detection.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 134.29 Td (* Financial Health Scoring: Existing apps rely on credit history -> SmartPaisa computes an) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 121.49 Td (Explainable 0-100 Financial Health Score based on relative savings and budget adherence.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 106.19 Td (* Data Privacy & Security: Commercial apps share data with loan marketers -> SmartPaisa) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 93.39 Td (enforces PostgreSQL Row Level Security \(RLS\) and DPDP Act 2023 export/deletion controls.) Tj ET
+0.45 0.50 0.58 rg
+BT /F1 8.5 Tf 48 28 Td (SmartPaisa Project Documentation  |  Page 1) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 5913 >>
+stream
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 781.89 Td (3. Project Objectives) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 776.89 m 547.28 776.89 l S
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 763.89 Td (* Objective 1: Automate Indian Expense Categorization across 12 student-centric categories) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 751.09 Td (using a hybrid Rule + ML + Active Learning pipeline.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 735.79 Td (* Objective 2: Predict Future Expenditure over 7-day, End-of-Month, and 30-day horizons) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 722.99 Td (using ensemble regression models with live MAE, RMSE, and MAPE metrics.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 707.69 Td (* Objective 3: Detect Spending Anomalies Early including category spikes and accidental) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 694.89 Td (duplicate UPI charges within 48 hours.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 679.59 Td (* Objective 4: Provide Explainable Financial Guidance via a conversational AI Financial) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 666.79 Td (Assistant and a 10-module Indian Financial Literacy Centre.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 651.49 Td (* Objective 5: Enforce Strict Data Isolation guaranteeing zero cross-account data leakage) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 638.69 Td (via Supabase Row Level Security \(auth.uid\(\) = user_id\).) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 615.39 Td (4. System Architecture & Technology Stack) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 610.39 m 547.28 610.39 l S
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 597.39 Td (* Frontend Layer: React 18.3, TypeScript 5.6, Vite 5.4, React Router v6, Tailwind CSS 3.4,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 584.59 Td (Framer Motion 14.9, Lucide React Icons, Recharts 2.13.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 569.29 Td (* Validation & State: React Hook Form 7.53, Zod 3.23 schema validation, AuthContext,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 556.49 Td (FinanceContext, CookieContext.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 541.19 Td (* Backend & Database: Supabase Auth \(JWT\), Supabase PostgreSQL 15+ with Row Level Security) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 528.39 Td (\(RLS\), Supabase Edge Functions.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 513.09 Td (* AI & Machine Learning: Google Gemini API, Client TypeScript ML Engine \(mlEngine.ts,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 500.29 Td (aiKnowledgeEngine.ts\), Python FastAPI Microservice \(Scikit-Learn, XGBoost, Pandas, NumPy\).) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 476.99 Td (5. Core Functional Modules & Mathematical Formulations) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 471.99 m 547.28 471.99 l S
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 454.99 Td (Module 1: Authentication & DPDP Act 2023 Compliance \(/login, /signup, /privacy-data\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 440.99 Td (Provides full email/password authentication via Supabase Auth, an 18+ Age Eligibility) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 427.79 Td (verification gate, unbundled optional marketing consent, automatic PostgreSQL profile creation) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 414.59 Td (trigger \(on_auth_user_created\), one-click JSON/CSV data export, and account deletion requests.) Tj ET
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 393.39 Td (Module 2: Executive Financial Dashboard \(/dashboard\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 379.39 Td (Renders 15+ live KPIs \(Total Spend, Monthly Budget, Remaining Balance, Daily Velocity, Savings) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 366.19 Td (Rate, Budget Utilization %, End-of-Month Forecast, Health Score\) and 6 interactive Recharts) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 352.99 Td (visualizations with WCAG tabular view toggles.) Tj ET
+0.94 0.99 0.96 rg 48 305.79 499.28 38.00 re f
+0.06 0.72 0.50 rg 48 305.79 3.5 38.00 re f
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 329.79 Td (Safe Daily Spend = max\(0, \(Monthly Budget - Spent So Far\) / Remaining Days in) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 316.79 Td (Month\)) Tj ET
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 291.79 Td (Module 3: 3-Tier AI Expense Categorization \(/expenses\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 277.79 Td (Classifies transactions across 12 categories \(Food & Dining, Groceries, Transport, Rent,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 264.59 Td (Education, Shopping, Entertainment, Bills & Recharge, Subscriptions, Health, Personal Care,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 251.39 Td (Other\) using: \(1\) Active Learning user feedback \(0.99 confidence\), \(2\) Deterministic Indian) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 238.19 Td (Merchant & UPI Keyword Rule Engine \(100+ merchants like Swiggy, Zomato, Blinkit, Zepto, Uber,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 224.99 Td (DMRC, IRCTC, Jio, Airtel\), and \(3\) TF-IDF + Logistic Regression classifier.) Tj ET
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 203.79 Td (Module 4: Multi-Model Time-Series Expense Forecasting \(/predictions\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 189.79 Td (Evaluates 4 chronological models using walk-forward validation without future-data leakage:) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 176.59 Td (Moving Average, Linear Regression \(OLS\), Random Forest Regressor, and XGBoost Gradient) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 163.39 Td (Boosting.) Tj ET
+0.94 0.99 0.96 rg 48 116.19 499.28 38.00 re f
+0.06 0.72 0.50 rg 48 116.19 3.5 38.00 re f
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 140.19 Td (MAE = \(1/n\) Sum |y - y_hat|   |   RMSE = sqrt\(\(1/n\) Sum \(y - y_hat\)^2\)   |   MAPE) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 127.19 Td (= \(100%/n\) Sum |\(y - y_hat\)/y|) Tj ET
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 102.19 Td (Module 5: Explainable Financial Health Score & Anomaly Detection \(/insights\)) Tj ET
+0.45 0.50 0.58 rg
+BT /F1 8.5 Tf 48 28 Td (SmartPaisa Project Documentation  |  Page 2) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 6003 >>
+stream
+0.94 0.99 0.96 rg 48 759.89 499.28 38.00 re f
+0.06 0.72 0.50 rg 48 759.89 3.5 38.00 re f
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 783.89 Td (Health Score \(0-100\) = 0.30\(Budget Adherence\) + 0.25\(Savings Consistency\) +) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 770.89 Td (0.20\(Expense Stability\) + 0.15\(Emergency Fund\) + 0.10\(Goal Progress\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 749.89 Td (Anomaly detection combines Isolation Forest, Local Outlier Factor \(LOF k-NN density\), Rolling) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 736.69 Td (Category Z-Score \(Z = \(x - mean\)/std > 2.5\), and 48-hour duplicate transaction detection.) Tj ET
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 715.49 Td (Module 6: Smart Budgets, Savings Goals & Statement Scanner \(/budgets, /savings, /import\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 701.49 Td (Recommends category budget caps based on historical velocity; tracks savings goals with strict) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 688.29 Td (separation between Verified Actual Deposits and Planned Contributions; imports CSV/PDF) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 675.09 Td (statements and Receipt OCR images into a validated staging table.) Tj ET
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 653.89 Td (Module 7: Hybrid AI Financial Assistant & Literacy Centre \(/ai-assistant, /learn\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 639.89 Td (Combines deterministic ledger math with Google Gemini LLM reasoning to answer affordability) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 626.69 Td (checks \("Can I afford a INR 2,000 purchase this week?"\), month-over-month audits, and savings) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 613.49 Td (plans. Includes 10 interactive INR financial literacy modules and quizzes.) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 588.29 Td (6. Database Schema & Row Level Security \(RLS\)) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 583.29 m 547.28 583.29 l S
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 570.29 Td (* 1. public.profiles: Stores user metadata \(id, full_name, email, currency="INR",) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 557.49 Td (age_verified, marketing_consent\). RLS: SELECT/UPDATE where auth.uid\(\) = id.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 542.19 Td (* 2. public.expenses: Stores expense ledger \(id, user_id, title, amount, category,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 529.39 Td (expense_date, payment_method, notes\). RLS: Full CRUD where auth.uid\(\) = user_id.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 514.09 Td (* 3. public.monthly_budgets: Stores monthly budget caps \(id, user_id, month, year, amount\).) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 501.29 Td (Unique constraint on \(user_id, month, year\). RLS: Full CRUD where auth.uid\(\) = user_id.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 485.99 Td (* 4. public.ai_conversations & ai_messages: Stores AI chat history per user. RLS:) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 473.19 Td (SELECT/INSERT/DELETE where auth.uid\(\) = user_id.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 457.89 Td (* 5. public.privacy_requests & consent_records: Audit trail for DPDP Act data export,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 445.09 Td (account deletion, and cookie/marketing consents. RLS: SELECT/INSERT where auth.uid\(\) =) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 432.29 Td (user_id.) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 408.99 Td (7. Software & Hardware Requirements) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 403.99 m 547.28 403.99 l S
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 390.99 Td (* Software Requirements: Windows 10/11, macOS, or Linux; Node.js >= 18.x; npm >= 9.x;) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 378.19 Td (Supabase PostgreSQL 15+; Python 3.10+ \(optional for FastAPI ML service\); Modern Web Browser.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 362.89 Td (* Hardware Requirements: Intel Core i3 / AMD Ryzen 3 or higher; Minimum 4 GB RAM \(8 GB) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 350.09 Td (recommended\); 500 MB free disk space; Active internet connection.) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 326.79 Td (8. Installation & Execution Steps) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 321.79 m 547.28 321.79 l S
+0.94 0.99 0.96 rg 48 252.79 499.28 64.00 re f
+0.06 0.72 0.50 rg 48 252.79 3.5 64.00 re f
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 302.79 Td (1. Install packages: npm install   |   2. Configure .env with VITE_SUPABASE_URL,) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 289.79 Td (VITE_SUPABASE_ANON_KEY, VITE_GEMINI_API_KEY   |   3. Run SQL migration in Supabase) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 276.79 Td (SQL Editor \(supabase/migrations/20261102000000_init_smartpaisa.sql\)   |   4. Start) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 263.79 Td (dev server: npm run dev   |   5. Build & Test: npm test && npm run build) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 234.79 Td (9. Conclusion & Future Scope) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 229.79 m 547.28 229.79 l S
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 216.79 Td (Conclusion: SmartPaisa bridges the gap between passive expense logging and proactive financial) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 203.59 Td (intelligence for young Indians. By combining localized Indian UPI merchant recognition,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 190.39 Td (ensemble ML forecasting, anomaly detection, and bank-grade Row Level Security, it empowers) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 177.19 Td (students to stay within budget and build sustainable savings habits.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 159.99 Td (Future Scope: \(1\) Real-time bank & UPI feed synchronization via India RBI Account Aggregator) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 146.79 Td (\(AA\) framework, \(2\) Multilingual voice-based expense logging in Hindi, Telugu, Tamil, and) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 133.59 Td (English, and \(3\) Shared hostel/flatmate bill-splitting and settlement tracking.) Tj ET
+0.45 0.50 0.58 rg
+BT /F1 8.5 Tf 48 28 Td (SmartPaisa Project Documentation  |  Page 3) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595.28 841.89] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 6096 >>
+stream
+0.94 0.99 0.96 rg 48 759.89 499.28 38.00 re f
+0.06 0.72 0.50 rg 48 759.89 3.5 38.00 re f
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 783.89 Td (Health Score \(0-100\) = 0.30\(Budget Adherence\) + 0.25\(Savings Consistency\) +) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 770.89 Td (0.20\(Expense Stability\) + 0.15\(Emergency Fund\) + 0.10\(Goal Progress\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 749.89 Td (Anomaly detection combines Isolation Forest, Local Outlier Factor \(LOF k-NN density\), Rolling) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 736.69 Td (Category Z-Score \(Z = \(x - mean\)/std > 2.5\), and 48-hour duplicate transaction detection.) Tj ET
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 715.49 Td (Module 6: Smart Budgets, Savings Goals & Statement Scanner \(/budgets, /savings, /import\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 701.49 Td (Recommends category budget caps based on historical velocity; tracks savings goals with strict) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 688.29 Td (separation between Verified Actual Deposits and Planned Contributions; imports CSV/PDF) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 675.09 Td (statements and Receipt OCR images into a validated staging table.) Tj ET
+0.08 0.15 0.25 rg
+BT /F2 10.5 Tf 48 653.89 Td (Module 7: Hybrid AI Financial Assistant & Literacy Centre \(/ai-assistant, /learn\)) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 639.89 Td (Combines deterministic ledger math with Google Gemini LLM reasoning to answer affordability) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 626.69 Td (checks \("Can I afford a INR 2,000 purchase this week?"\), month-over-month audits, and savings) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 613.49 Td (plans. Includes 10 interactive INR financial literacy modules and quizzes.) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 588.29 Td (6. Database Schema & Row Level Security \(RLS\)) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 583.29 m 547.28 583.29 l S
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 570.29 Td (* 1. public.profiles: Stores user metadata \(id, full_name, email, currency="INR",) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 557.49 Td (age_verified, marketing_consent\). RLS: SELECT/UPDATE where auth.uid\(\) = id.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 542.19 Td (* 2. public.expenses: Stores expense ledger \(id, user_id, title, amount, category,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 529.39 Td (expense_date, payment_method, notes\). RLS: Full CRUD where auth.uid\(\) = user_id.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 514.09 Td (* 3. public.monthly_budgets: Stores monthly budget caps \(id, user_id, month, year, amount\).) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 501.29 Td (Unique constraint on \(user_id, month, year\). RLS: Full CRUD where auth.uid\(\) = user_id.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 485.99 Td (* 4. public.ai_conversations & ai_messages: Stores AI chat history per user. RLS:) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 473.19 Td (SELECT/INSERT/DELETE where auth.uid\(\) = user_id.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 457.89 Td (* 5. public.privacy_requests & consent_records: Audit trail for DPDP Act data export,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 445.09 Td (account deletion, and cookie/marketing consents. RLS: SELECT/INSERT where auth.uid\(\) =) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 432.29 Td (user_id.) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 408.99 Td (7. Software & Hardware Requirements) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 403.99 m 547.28 403.99 l S
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 390.99 Td (* Software Requirements: Windows 10/11, macOS, or Linux; Node.js >= 18.x; npm >= 9.x;) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 378.19 Td (Supabase PostgreSQL 15+; Python 3.10+ \(optional for FastAPI ML service\); Modern Web Browser.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 56 362.89 Td (* Hardware Requirements: Intel Core i3 / AMD Ryzen 3 or higher; Minimum 4 GB RAM \(8 GB) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.3 Tf 64 350.09 Td (recommended\); 500 MB free disk space; Active internet connection.) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 326.79 Td (8. Installation & Execution Steps) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 321.79 m 547.28 321.79 l S
+0.94 0.99 0.96 rg 48 252.79 499.28 64.00 re f
+0.06 0.72 0.50 rg 48 252.79 3.5 64.00 re f
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 302.79 Td (1. Install packages: npm install   |   2. Configure .env with VITE_SUPABASE_URL,) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 289.79 Td (VITE_SUPABASE_ANON_KEY, VITE_GEMINI_API_KEY   |   3. Run SQL migration in Supabase) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 276.79 Td (SQL Editor \(supabase/migrations/20261102000000_init_smartpaisa.sql\)   |   4. Start) Tj ET
+0.02 0.30 0.22 rg
+BT /F3 8.8 Tf 58 263.79 Td (dev server: npm run dev   |   5. Build & Test: npm test && npm run build) Tj ET
+0.02 0.37 0.27 rg
+BT /F2 12.5 Tf 48 234.79 Td (9. Conclusion & Future Scope) Tj ET
+0.06 0.72 0.50 RG 1.2 w 48 229.79 m 547.28 229.79 l S
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 216.79 Td (Conclusion: SmartPaisa bridges the gap between passive expense logging and proactive financial) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 203.59 Td (intelligence for young Indians. By combining localized Indian UPI merchant recognition,) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 190.39 Td (ensemble ML forecasting, anomaly detection, and bank-grade Row Level Security, it empowers) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 177.19 Td (students to stay within budget and build sustainable savings habits.) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 159.99 Td (Future Scope: \(1\) Real-time bank & UPI feed synchronization via India RBI Account Aggregator) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 146.79 Td (\(AA\) framework, \(2\) Multilingual voice-based expense logging in Hindi, Telugu, Tamil, and) Tj ET
+0.10 0.14 0.20 rg
+BT /F1 9.5 Tf 48 133.59 Td (English, and \(3\) Shared hostel/flatmate bill-splitting and settlement tracking.) Tj ET
+0.45 0.50 0.58 rg
+BT /F1 8.5 Tf 48 28 Td (SmartPaisa Project Documentation  |  Page 3) Tj ET
+0.45 0.50 0.58 rg
+BT /F1 8.5 Tf 48 28 Td (SmartPaisa Project Documentation  |  Page 3) Tj ET
+endstream
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000135 00000 n 
+0000000232 00000 n 
+0000000334 00000 n 
+0000000429 00000 n 
+0000000581 00000 n 
+0000006664 00000 n 
+0000006816 00000 n 
+0000012781 00000 n 
+0000012935 00000 n 
+0000018991 00000 n 
+0000019145 00000 n 
+trailer
+<< /Size 14 /Root 1 0 R >>
+startxref
+25294
+%%EOF
