@@ -342,17 +342,24 @@ export const LocalStore = {
       const data = localStorage.getItem(STORAGE_KEYS.EXPENSES);
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.EXPENSES, JSON.stringify(SEED_EXPENSES));
-        return SEED_EXPENSES;
+        return SEED_EXPENSES.filter((e) => e.user_id === userId);
       }
       const parsed: Expense[] = JSON.parse(data);
       return parsed.filter((e) => e.user_id === userId);
     } catch {
-      return SEED_EXPENSES;
+      return [];
     }
   },
 
   saveExpenses(expenses: Expense[]): void {
-    localStorage.setItem(STORAGE_KEYS.EXPENSES, JSON.stringify(expenses));
+    try {
+      const existing: Expense[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.EXPENSES) || '[]');
+      const userId = expenses[0]?.user_id;
+      const others = userId ? existing.filter((e) => e.user_id !== userId) : [];
+      localStorage.setItem(STORAGE_KEYS.EXPENSES, JSON.stringify([...expenses, ...others]));
+    } catch {
+      localStorage.setItem(STORAGE_KEYS.EXPENSES, JSON.stringify(expenses));
+    }
   },
 
   getBudgets(userId: string): MonthlyBudget[] {
@@ -360,17 +367,24 @@ export const LocalStore = {
       const data = localStorage.getItem(STORAGE_KEYS.BUDGETS);
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.BUDGETS, JSON.stringify(SEED_BUDGETS));
-        return SEED_BUDGETS;
+        return SEED_BUDGETS.filter((b) => b.user_id === userId);
       }
       const parsed: MonthlyBudget[] = JSON.parse(data);
       return parsed.filter((b) => b.user_id === userId);
     } catch {
-      return SEED_BUDGETS;
+      return [];
     }
   },
 
   saveBudgets(budgets: MonthlyBudget[]): void {
-    localStorage.setItem(STORAGE_KEYS.BUDGETS, JSON.stringify(budgets));
+    try {
+      const existing: MonthlyBudget[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.BUDGETS) || '[]');
+      const userId = budgets[0]?.user_id;
+      const others = userId ? existing.filter((b) => b.user_id !== userId) : [];
+      localStorage.setItem(STORAGE_KEYS.BUDGETS, JSON.stringify([...budgets, ...others]));
+    } catch {
+      localStorage.setItem(STORAGE_KEYS.BUDGETS, JSON.stringify(budgets));
+    }
   },
 
   getCategoryBudgets(userId: string): CategoryBudget[] {
@@ -393,17 +407,24 @@ export const LocalStore = {
       const data = localStorage.getItem(STORAGE_KEYS.INCOMES);
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.INCOMES, JSON.stringify(SEED_INCOMES));
-        return SEED_INCOMES;
+        return SEED_INCOMES.filter((i) => i.user_id === userId);
       }
       const parsed: Income[] = JSON.parse(data);
       return parsed.filter((i) => i.user_id === userId);
     } catch {
-      return SEED_INCOMES;
+      return [];
     }
   },
 
   saveIncomes(incomes: Income[]): void {
-    localStorage.setItem(STORAGE_KEYS.INCOMES, JSON.stringify(incomes));
+    try {
+      const existing: Income[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.INCOMES) || '[]');
+      const userId = incomes[0]?.user_id;
+      const others = userId ? existing.filter((i) => i.user_id !== userId) : [];
+      localStorage.setItem(STORAGE_KEYS.INCOMES, JSON.stringify([...incomes, ...others]));
+    } catch {
+      localStorage.setItem(STORAGE_KEYS.INCOMES, JSON.stringify(incomes));
+    }
   },
 
   getSavingsGoals(userId: string): SavingsGoal[] {
@@ -411,17 +432,24 @@ export const LocalStore = {
       const data = localStorage.getItem(STORAGE_KEYS.SAVINGS_GOALS);
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.SAVINGS_GOALS, JSON.stringify(SEED_SAVINGS_GOALS));
-        return SEED_SAVINGS_GOALS;
+        return SEED_SAVINGS_GOALS.filter((g) => g.user_id === userId);
       }
       const parsed: SavingsGoal[] = JSON.parse(data);
       return parsed.filter((g) => g.user_id === userId);
     } catch {
-      return SEED_SAVINGS_GOALS;
+      return [];
     }
   },
 
   saveSavingsGoals(goals: SavingsGoal[]): void {
-    localStorage.setItem(STORAGE_KEYS.SAVINGS_GOALS, JSON.stringify(goals));
+    try {
+      const existing: SavingsGoal[] = JSON.parse(localStorage.getItem(STORAGE_KEYS.SAVINGS_GOALS) || '[]');
+      const userId = goals[0]?.user_id;
+      const others = userId ? existing.filter((g) => g.user_id !== userId) : [];
+      localStorage.setItem(STORAGE_KEYS.SAVINGS_GOALS, JSON.stringify([...goals, ...others]));
+    } catch {
+      localStorage.setItem(STORAGE_KEYS.SAVINGS_GOALS, JSON.stringify(goals));
+    }
   },
 
   getSavingsContributions(userId: string): SavingsContribution[] {
@@ -429,12 +457,12 @@ export const LocalStore = {
       const data = localStorage.getItem(STORAGE_KEYS.SAVINGS_CONTRIBUTIONS);
       if (!data) {
         localStorage.setItem(STORAGE_KEYS.SAVINGS_CONTRIBUTIONS, JSON.stringify(SEED_CONTRIBUTIONS));
-        return SEED_CONTRIBUTIONS;
+        return SEED_CONTRIBUTIONS.filter((c) => c.user_id === userId);
       }
       const parsed: SavingsContribution[] = JSON.parse(data);
       return parsed.filter((c) => c.user_id === userId);
     } catch {
-      return SEED_CONTRIBUTIONS;
+      return [];
     }
   },
 

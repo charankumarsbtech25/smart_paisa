@@ -22,11 +22,14 @@ CREATE TABLE IF NOT EXISTS public.expenses (
   amount NUMERIC(12, 2) NOT NULL CHECK (amount > 0),
   category TEXT NOT NULL CHECK (category IN (
     'Food & Dining',
+    'Groceries',
     'Transport',
+    'Rent',
     'Education',
     'Shopping',
     'Entertainment',
     'Bills & Recharge',
+    'Subscriptions',
     'Health',
     'Personal Care',
     'Other'

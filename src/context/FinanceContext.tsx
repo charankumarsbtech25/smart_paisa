@@ -130,6 +130,15 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }
 
     setLoading(true);
+    // Load local user records first so data is always available even if cloud tables are not migrated yet
+    const localExp = LocalStore.getExpenses(user.id);
+    const localBud = LocalStore.getBudgets(user.id);
+    const localCatBud = LocalStore.getCategoryBudgets(user.id);
+    const localInc = LocalStore.getIncomes(user.id);
+    const localGoals = LocalStore.getSavingsGoals(user.id);
+    const localContribs = LocalStore.getSavingsContributions(user.id);
+    const localNotifs = LocalStore.getNotifications(user.id);
+
     if (isSupabaseConfigured) {
       try {
         const [expRes, budRes, catBudRes, incRes, goalRes, contribRes, notifRes] = await Promise.all([
@@ -142,27 +151,39 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
           supabase.from('notifications').select('*').eq('user_id', user.id).order('created_at', { ascending: false }),
         ]);
 
-        if (expRes.data) setExpenses(expRes.data as Expense[]);
-        if (budRes.data) setBudgets(budRes.data as MonthlyBudget[]);
-        if (catBudRes.data) setCategoryBudgets(catBudRes.data as CategoryBudget[]);
-        if (incRes.data) setIncomes(incRes.data as Income[]);
-        if (goalRes.data) setSavingsGoals(goalRes.data as SavingsGoal[]);
-        if (contribRes.data) setSavingsContributions(contribRes.data as SavingsContribution[]);
-        if (notifRes.data) setNotifications(notifRes.data as NotificationItem[]);
+        const mergeById = <T extends { id: string }>(cloud: T[] | null | undefined, local: T[]): T[] => {
+          if (!cloud || cloud.length === 0) return local;
+          const seen = new Set(cloud.map((item) => item.id));
+          return [...cloud, ...local.filter((item) => !seen.has(item.id))];
+        };
+
+        setExpenses(mergeById(expRes.data as Expense[] | null, localExp));
+        setBudgets(mergeById(budRes.data as MonthlyBudget[] | null, localBud));
+        setCategoryBudgets(mergeById(catBudRes.data as CategoryBudget[] | null, localCatBud));
+        setIncomes(mergeById(incRes.data as Income[] | null, localInc));
+        setSavingsGoals(mergeById(goalRes.data as SavingsGoal[] | null, localGoals));
+        setSavingsContributions(mergeById(contribRes.data as SavingsContribution[] | null, localContribs));
+        setNotifications(mergeById(notifRes.data as NotificationItem[] | null, localNotifs));
       } catch (err) {
-        console.error('Error fetching Supabase finance data:', err);
+        console.error('Error fetching Supabase finance data, using local store:', err);
+        setExpenses(localExp);
+        setBudgets(localBud);
+        setCategoryBudgets(localCatBud);
+        setIncomes(localInc);
+        setSavingsGoals(localGoals);
+        setSavingsContributions(localContribs);
+        setNotifications(localNotifs);
       } finally {
         setLoading(false);
       }
     } else {
-      // LocalStore fallback
-      setExpenses(LocalStore.getExpenses(currentUserId));
-      setBudgets(LocalStore.getBudgets(currentUserId));
-      setCategoryBudgets(LocalStore.getCategoryBudgets(currentUserId));
-      setIncomes(LocalStore.getIncomes(currentUserId));
-      setSavingsGoals(LocalStore.getSavingsGoals(currentUserId));
-      setSavingsContributions(LocalStore.getSavingsContributions(currentUserId));
-      setNotifications(LocalStore.getNotifications(currentUserId));
+      setExpenses(localExp);
+      setBudgets(localBud);
+      setCategoryBudgets(localCatBud);
+      setIncomes(localInc);
+      setSavingsGoals(localGoals);
+      setSavingsContributions(localContribs);
+      setNotifications(localNotifs);
       setNotificationPreferences(LocalStore.getNotificationPreferences());
       setLoading(false);
     }
@@ -322,7 +343,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const addExpense = async (data: ExpenseInput): Promise<{ success: boolean; error?: string }> => {
     if (!user) return { success: false, error: 'User is not authenticated' };
 
-    const newExpense: Expense = {
+    let savedExpense: Expense = {
       id: `exp-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
       user_id: user.id,
       title: data.title.trim(),
@@ -332,7 +353,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       category_confirmed: data.category_confirmed ?? true,
       is_recurring: data.is_recurring ?? false,
       expense_date: data.expense_date,
-      payment_method: data.payment_method,
+      payment_method: data.payment_method || 'UPI',
       notes: data.notes?.trim() || '',
       created_at: new Date().toISOString(),
       updated_at: new Date().toISOString(),
@@ -340,17 +361,47 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured) {
       try {
-        const { data: inserted, error } = await supabase.from('expenses').insert(newExpense).select().single();
-        if (error) return { success: false, error: error.message };
-        setExpenses((prev) => [inserted as Expense, ...prev]);
-        return { success: true };
+        const dbPayload = {
+          user_id: user.id,
+          title: savedExpense.title,
+          amount: savedExpense.amount,
+          category: savedExpense.category,
+          expense_date: savedExpense.expense_date,
+          payment_method: savedExpense.payment_method,
+          notes: savedExpense.notes,
+        };
+        const { data: inserted, error } = await supabase
+          .from('expenses')
+          .insert(dbPayload)
+          .select()
+          .single();
+        if (!error && inserted) {
+          savedExpense = {
+            ...savedExpense,
+            ...(inserted as Expense),
+            subcategory: savedExpense.subcategory,
+            category_confirmed: savedExpense.category_confirmed,
+            is_recurring: savedExpense.is_recurring,
+          };
+        } else if (error) {
+          console.warn('Supabase expense insert warning (saved locally):', error.message);
+        }
       } catch (err: any) {
-        return { success: false, error: err.message };
+        console.warn('Supabase expense insert error (saved locally):', err);
+      }
+    }
+
+    // Automatically switch selected month/year to the added expense's date so user sees it immediately
+    if (savedExpense.expense_date) {
+      const [expYear, expMonth] = savedExpense.expense_date.split('-').map(Number);
+      if (expYear && expMonth) {
+        setSelectedMonth(expMonth);
+        setSelectedYear(expYear);
       }
     }
 
     setExpenses((prev) => {
-      const next = [newExpense, ...prev];
+      const next = [savedExpense, ...prev];
       LocalStore.saveExpenses(next);
       return next;
     });
@@ -363,18 +414,21 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured) {
       try {
-        const { data: updated, error } = await supabase
+        const dbUpdates: Record<string, any> = { updated_at: new Date().toISOString() };
+        if (data.title !== undefined) dbUpdates.title = data.title;
+        if (data.amount !== undefined) dbUpdates.amount = Number(data.amount);
+        if (data.category !== undefined) dbUpdates.category = data.category;
+        if (data.expense_date !== undefined) dbUpdates.expense_date = data.expense_date;
+        if (data.payment_method !== undefined) dbUpdates.payment_method = data.payment_method;
+        if (data.notes !== undefined) dbUpdates.notes = data.notes;
+
+        await supabase
           .from('expenses')
-          .update({ ...data, updated_at: new Date().toISOString() })
+          .update(dbUpdates)
           .eq('id', id)
-          .eq('user_id', user.id)
-          .select()
-          .single();
-        if (error) return { success: false, error: error.message };
-        setExpenses((prev) => prev.map((e) => (e.id === id ? (updated as Expense) : e)));
-        return { success: true };
+          .eq('user_id', user.id);
       } catch (err: any) {
-        return { success: false, error: err.message };
+        console.warn('Supabase updateExpense fallback:', err);
       }
     }
 
@@ -392,12 +446,9 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured) {
       try {
-        const { error } = await supabase.from('expenses').delete().eq('id', id).eq('user_id', user.id);
-        if (error) return { success: false, error: error.message };
-        setExpenses((prev) => prev.filter((e) => e.id !== id));
-        return { success: true };
+        await supabase.from('expenses').delete().eq('id', id).eq('user_id', user.id);
       } catch (err: any) {
-        return { success: false, error: err.message };
+        console.warn('Supabase deleteExpense fallback:', err);
       }
     }
 
@@ -420,6 +471,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
     const m = month || selectedMonth;
     const y = year || selectedYear;
     const safeAmount = Math.max(0, Number(amount));
+    let upsertedBudget: MonthlyBudget | null = null;
 
     if (isSupabaseConfigured) {
       try {
@@ -438,19 +490,11 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
           .select()
           .single();
 
-        if (error) return { success: false, error: error.message };
-        setBudgets((prev) => {
-          const existingIdx = prev.findIndex((b) => b.month === m && b.year === y);
-          if (existingIdx >= 0) {
-            const next = [...prev];
-            next[existingIdx] = upserted as MonthlyBudget;
-            return next;
-          }
-          return [...prev, upserted as MonthlyBudget];
-        });
-        return { success: true };
+        if (!error && upserted) {
+          upsertedBudget = upserted as MonthlyBudget;
+        }
       } catch (err: any) {
-        return { success: false, error: err.message };
+        console.warn('Supabase setMonthlyBudget fallback:', err);
       }
     }
 
@@ -459,13 +503,13 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
       let next: MonthlyBudget[];
       if (existingIdx >= 0) {
         next = [...prev];
-        next[existingIdx] = {
+        next[existingIdx] = upsertedBudget || {
           ...next[existingIdx],
           amount: safeAmount,
           updated_at: new Date().toISOString(),
         };
       } else {
-        const newBudget: MonthlyBudget = {
+        const newBudget: MonthlyBudget = upsertedBudget || {
           id: `b-${y}-${m}`,
           user_id: user.id,
           month: m,
@@ -534,7 +578,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const addIncome = async (data: IncomeInput): Promise<{ success: boolean; error?: string }> => {
     if (!user) return { success: false, error: 'User is not authenticated' };
 
-    const newIncome: Income = {
+    let newIncome: Income = {
       id: `inc-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
       user_id: user.id,
       source: data.source.trim(),
@@ -548,12 +592,23 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured) {
       try {
-        const { data: inserted, error } = await supabase.from('incomes').insert(newIncome).select().single();
-        if (error) return { success: false, error: error.message };
-        setIncomes((prev) => [inserted as Income, ...prev]);
-        return { success: true };
+        const { data: inserted, error } = await supabase
+          .from('incomes')
+          .insert({
+            user_id: user.id,
+            source: newIncome.source,
+            amount: newIncome.amount,
+            income_date: newIncome.income_date,
+            recurrence: newIncome.recurrence,
+            notes: newIncome.notes,
+          })
+          .select()
+          .single();
+        if (!error && inserted) {
+          newIncome = inserted as Income;
+        }
       } catch (err: any) {
-        return { success: false, error: err.message };
+        console.warn('Supabase addIncome fallback:', err);
       }
     }
 
@@ -570,12 +625,9 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured) {
       try {
-        const { error } = await supabase.from('incomes').delete().eq('id', id).eq('user_id', user.id);
-        if (error) return { success: false, error: error.message };
-        setIncomes((prev) => prev.filter((i) => i.id !== id));
-        return { success: true };
+        await supabase.from('incomes').delete().eq('id', id).eq('user_id', user.id);
       } catch (err: any) {
-        return { success: false, error: err.message };
+        console.warn('Supabase deleteIncome fallback:', err);
       }
     }
 
@@ -591,7 +643,7 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const addSavingsGoal = async (data: SavingsGoalInput): Promise<{ success: boolean; error?: string }> => {
     if (!user) return { success: false, error: 'User is not authenticated' };
 
-    const newGoal: SavingsGoal = {
+    let newGoal: SavingsGoal = {
       id: `goal-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 6)}`,
       user_id: user.id,
       name: data.name.trim(),
@@ -607,12 +659,25 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured) {
       try {
-        const { data: inserted, error } = await supabase.from('savings_goals').insert(newGoal).select().single();
-        if (error) return { success: false, error: error.message };
-        setSavingsGoals((prev) => [...prev, inserted as SavingsGoal]);
-        return { success: true };
+        const { data: inserted, error } = await supabase
+          .from('savings_goals')
+          .insert({
+            user_id: user.id,
+            name: newGoal.name,
+            target_amount: newGoal.target_amount,
+            current_amount: 0,
+            planned_amount: 0,
+            target_date: newGoal.target_date,
+            category: newGoal.category,
+            status: 'in_progress',
+          })
+          .select()
+          .single();
+        if (!error && inserted) {
+          newGoal = inserted as SavingsGoal;
+        }
       } catch (err: any) {
-        return { success: false, error: err.message };
+        console.warn('Supabase addSavingsGoal fallback:', err);
       }
     }
 
@@ -629,18 +694,13 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured) {
       try {
-        const { data: updated, error } = await supabase
+        await supabase
           .from('savings_goals')
           .update({ ...updates, updated_at: new Date().toISOString() })
           .eq('id', id)
-          .eq('user_id', user.id)
-          .select()
-          .single();
-        if (error) return { success: false, error: error.message };
-        setSavingsGoals((prev) => prev.map((g) => (g.id === id ? (updated as SavingsGoal) : g)));
-        return { success: true };
+          .eq('user_id', user.id);
       } catch (err: any) {
-        return { success: false, error: err.message };
+        console.warn('Supabase updateSavingsGoal fallback:', err);
       }
     }
 
@@ -657,12 +717,9 @@ export const FinanceProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
     if (isSupabaseConfigured) {
       try {
-        const { error } = await supabase.from('savings_goals').delete().eq('id', id).eq('user_id', user.id);
-        if (error) return { success: false, error: error.message };
-        setSavingsGoals((prev) => prev.filter((g) => g.id !== id));
-        return { success: true };
+        await supabase.from('savings_goals').delete().eq('id', id).eq('user_id', user.id);
       } catch (err: any) {
-        return { success: false, error: err.message };
+        console.warn('Supabase deleteSavingsGoal fallback:', err);
       }
     }
 
