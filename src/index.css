@@ -30,9 +30,21 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-slate-50 text-slate-900 font-sans antialiased overflow-x-hidden;
+  html,
+  body,
+  #root {
+    @apply bg-slate-50 text-slate-900 font-sans antialiased overflow-x-hidden max-w-full;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Prevent iOS Safari auto-zoom on input focus on mobile screens */
+  @media (max-width: 640px) {
+    input,
+    select,
+    textarea {
+      font-size: 16px !important;
+    }
   }
 
   /* Accessibility focus visible rings */

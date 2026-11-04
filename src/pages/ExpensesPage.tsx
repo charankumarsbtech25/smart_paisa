@@ -328,8 +328,63 @@ export const ExpensesPage: React.FC = () => {
             </Button>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm">
+          <>
+            {/* Mobile Card List View (Phones) */}
+            <div className="sm:hidden divide-y divide-slate-100">
+              {paginatedExpenses.map((exp) => (
+                <div key={exp.id} className="p-4 flex items-start justify-between gap-3">
+                  <div className="min-w-0 flex-1 space-y-1">
+                    <div className="font-semibold text-sm text-slate-900 truncate">{exp.title}</div>
+                    <div className="flex flex-wrap items-center gap-1.5 text-[11px] text-slate-500">
+                      <Badge variant="gray" size="sm">
+                        {exp.category}
+                      </Badge>
+                      <span>•</span>
+                      <span>{formatReadableDate(exp.expense_date)}</span>
+                      {exp.payment_method && (
+                        <>
+                          <span>•</span>
+                          <span className="font-mono">{exp.payment_method}</span>
+                        </>
+                      )}
+                    </div>
+                    {exp.notes && (
+                      <p className="text-xs text-slate-400 line-clamp-1">{exp.notes}</p>
+                    )}
+                  </div>
+                  <div className="flex flex-col items-end gap-2 shrink-0">
+                    <span className="font-bold text-sm text-slate-900">
+                      -{formatINR(exp.amount)}
+                    </span>
+                    <div className="flex items-center gap-1">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setEditingExpense(exp);
+                          setIsAddModalOpen(true);
+                        }}
+                        className="p-1.5 text-emerald-600 hover:bg-emerald-50 rounded-lg transition-colors"
+                        aria-label={`Edit ${exp.title}`}
+                      >
+                        <Edit2 className="w-4 h-4" />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => setDeletingExpense(exp)}
+                        className="p-1.5 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors"
+                        aria-label={`Delete ${exp.title}`}
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Tablet & Desktop Table View */}
+            <div className="hidden sm:block overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm">
               <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
                 <tr>
                   <th className="py-3 px-4 sm:px-6">Transaction</th>
@@ -402,7 +457,8 @@ export const ExpensesPage: React.FC = () => {
                 ))}
               </tbody>
             </table>
-          </div>
+            </div>
+          </>
         )}
 
         {/* Pagination Bar */}

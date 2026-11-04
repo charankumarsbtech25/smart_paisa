@@ -244,7 +244,7 @@ Ask me anything about your finances:
   };
 
   return (
-    <div className="space-y-4 max-w-5xl mx-auto flex flex-col h-[calc(100vh-140px)]">
+    <div className="space-y-3 sm:space-y-4 max-w-5xl mx-auto flex flex-col h-[calc(100dvh-195px)] lg:h-[calc(100vh-140px)]">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-slate-200 gap-3 shrink-0">
         <div className="flex items-center gap-3">

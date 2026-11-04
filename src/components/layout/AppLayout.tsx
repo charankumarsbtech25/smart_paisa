@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, NavLink } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
+import { LayoutDashboard, ReceiptIndianRupee, PiggyBank, Sparkles, Plus } from 'lucide-react';
 import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { Footer } from './Footer';
@@ -50,7 +51,7 @@ export const AppLayout: React.FC = () => {
           title={getPageTitle()}
         />
 
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
+        <main className="flex-1 p-3 sm:p-6 lg:p-8 pb-24 lg:pb-8 max-w-7xl w-full mx-auto overflow-x-hidden">
           <AnimatePresence mode="wait">
             <motion.div
               key={location.pathname}
@@ -66,6 +67,75 @@ export const AppLayout: React.FC = () => {
 
         <Footer />
       </div>
+
+      {/* Mobile Bottom Navigation Bar (iOS / Android Native App Feel) */}
+      <nav
+        className="lg:hidden fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur-xl border-t border-slate-200/90 px-2 py-1.5 flex items-center justify-around shadow-elevated"
+        style={{ paddingBottom: 'max(0.375rem, env(safe-area-inset-bottom))' }}
+        aria-label="Mobile Bottom Navigation"
+      >
+        <NavLink
+          to="/"
+          className={({ isActive }) =>
+            `flex flex-col items-center justify-center py-1 px-2.5 rounded-xl text-[11px] font-semibold transition-colors ${
+              isActive || location.pathname === '/dashboard'
+                ? 'text-emerald-600'
+                : 'text-slate-500 hover:text-slate-900'
+            }`
+          }
+        >
+          <LayoutDashboard className="w-5 h-5 mb-0.5" />
+          <span>Home</span>
+        </NavLink>
+
+        <NavLink
+          to="/expenses"
+          className={({ isActive }) =>
+            `flex flex-col items-center justify-center py-1 px-2.5 rounded-xl text-[11px] font-semibold transition-colors ${
+              isActive ? 'text-emerald-600' : 'text-slate-500 hover:text-slate-900'
+            }`
+          }
+        >
+          <ReceiptIndianRupee className="w-5 h-5 mb-0.5" />
+          <span>Expenses</span>
+        </NavLink>
+
+        <button
+          type="button"
+          onClick={() => setAddExpenseModalOpen(true)}
+          className="flex flex-col items-center justify-center -mt-4"
+          aria-label="Add Expense"
+        >
+          <div className="w-11 h-11 rounded-full bg-emerald-600 text-white flex items-center justify-center shadow-lg shadow-emerald-600/30 active:scale-95 transition-transform">
+            <Plus className="w-5 h-5" />
+          </div>
+          <span className="text-[10px] font-bold text-emerald-700 mt-0.5">Add</span>
+        </button>
+
+        <NavLink
+          to="/budgets"
+          className={({ isActive }) =>
+            `flex flex-col items-center justify-center py-1 px-2.5 rounded-xl text-[11px] font-semibold transition-colors ${
+              isActive ? 'text-emerald-600' : 'text-slate-500 hover:text-slate-900'
+            }`
+          }
+        >
+          <PiggyBank className="w-5 h-5 mb-0.5" />
+          <span>Budgets</span>
+        </NavLink>
+
+        <NavLink
+          to="/ai-assistant"
+          className={({ isActive }) =>
+            `flex flex-col items-center justify-center py-1 px-2.5 rounded-xl text-[11px] font-semibold transition-colors ${
+              isActive ? 'text-emerald-600' : 'text-slate-500 hover:text-slate-900'
+            }`
+          }
+        >
+          <Sparkles className="w-5 h-5 mb-0.5" />
+          <span>Ask AI</span>
+        </NavLink>
+      </nav>
 
       {/* Global Add Expense Modal */}
       <ExpenseFormModal

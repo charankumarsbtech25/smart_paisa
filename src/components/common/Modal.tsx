@@ -46,7 +46,7 @@ export const Modal: React.FC<ModalProps> = ({
     <AnimatePresence>
       {isOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+          className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-2 sm:p-6 overflow-y-auto"
           role="dialog"
           aria-modal="true"
           aria-labelledby="modal-title"
@@ -62,13 +62,13 @@ export const Modal: React.FC<ModalProps> = ({
             aria-hidden="true"
           />
 
-          {/* Modal Dialog with spring scale-in */}
+          {/* Modal Dialog with spring scale-in and mobile scroll support */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.94, y: 14 }}
+            initial={{ opacity: 0, scale: 0.96, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.94, y: 14 }}
+            exit={{ opacity: 0, scale: 0.96, y: 20 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className={`relative w-full ${maxWidthClasses[maxWidth]} bg-white/95 backdrop-blur-xl rounded-2xl shadow-elevated border border-slate-200/90 z-10 p-6`}
+            className={`relative w-full ${maxWidthClasses[maxWidth]} max-h-[90dvh] overflow-y-auto bg-white/95 backdrop-blur-xl rounded-2xl shadow-elevated border border-slate-200/90 z-10 p-4 sm:p-6`}
           >
             <div className="flex items-start justify-between pb-4 border-b border-slate-100">
               <div>
