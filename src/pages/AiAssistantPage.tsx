@@ -301,28 +301,25 @@ Ask me anything about your finances:
               initial={{ opacity: 0, y: 12, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               transition={{ duration: 0.25, ease: 'easeOut' }}
-              className={`flex items-start gap-3 ${
-                msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
-              }`}
+              className={`flex items-start gap-3 ${msg.sender === 'user' ? 'flex-row-reverse' : 'flex-row'
+                }`}
             >
               {/* Avatar */}
               <div
-                className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs shrink-0 shadow-sm ${
-                  msg.sender === 'user'
+                className={`w-8 h-8 rounded-xl flex items-center justify-center text-xs shrink-0 shadow-sm ${msg.sender === 'user'
                     ? 'bg-slate-900 text-white'
                     : 'bg-emerald-600 text-white'
-                }`}
+                  }`}
               >
                 {msg.sender === 'user' ? <User className="w-4 h-4" /> : <Bot className="w-4 h-4" />}
               </div>
 
               {/* Bubble */}
               <div
-                className={`group relative max-w-[88%] sm:max-w-[78%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed transition-shadow duration-200 hover:shadow-card ${
-                  msg.sender === 'user'
+                className={`group relative max-w-[88%] sm:max-w-[78%] rounded-2xl p-4 text-xs sm:text-sm leading-relaxed transition-shadow duration-200 hover:shadow-card ${msg.sender === 'user'
                     ? 'bg-slate-900 text-white rounded-tr-none'
                     : 'bg-slate-50 text-slate-800 rounded-tl-none border border-slate-200/80 shadow-xs'
-                }`}
+                  }`}
               >
                 {msg.sender === 'assistant' && (
                   <button
@@ -347,9 +344,8 @@ Ask me anything about your finances:
                 )}
 
                 <div
-                  className={`mt-2.5 pt-2 border-t border-slate-200/40 flex items-center justify-between text-[10px] ${
-                    msg.sender === 'user' ? 'text-slate-400 border-slate-800' : 'text-slate-400'
-                  }`}
+                  className={`mt-2.5 pt-2 border-t border-slate-200/40 flex items-center justify-between text-[10px] ${msg.sender === 'user' ? 'text-slate-400 border-slate-800' : 'text-slate-400'
+                    }`}
                 >
                   <span>{msg.timestamp}</span>
                   {msg.sender === 'assistant' && (

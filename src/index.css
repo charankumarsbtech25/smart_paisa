@@ -40,6 +40,7 @@
 
   /* Prevent iOS Safari auto-zoom on input focus on mobile screens */
   @media (max-width: 640px) {
+
     input,
     select,
     textarea {
@@ -74,34 +75,45 @@
 
 /* Custom Ambient Animation Keyframes */
 @keyframes floatSlow {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0px, 0px) scale(1);
   }
+
   33% {
     transform: translate(30px, -25px) scale(1.08);
   }
+
   66% {
     transform: translate(-20px, 20px) scale(0.94);
   }
 }
 
 @keyframes floatDelayed {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translate(0px, 0px) scale(1);
   }
+
   33% {
     transform: translate(-30px, 35px) scale(0.92);
   }
+
   66% {
     transform: translate(25px, -20px) scale(1.06);
   }
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     transform: scale(1);
   }
+
   50% {
     opacity: 0.85;
     transform: scale(1.05);
@@ -112,15 +124,19 @@
   0% {
     background-position: -200% 0;
   }
+
   100% {
     background-position: 200% 0;
   }
 }
 
 @keyframes gentleBounce {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0);
   }
+
   50% {
     transform: translateY(-4px);
   }

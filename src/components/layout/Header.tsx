@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, Plus, Calendar, Sparkles, Bell, FileDown } from 'lucide-react';
+import { Menu, Plus, Calendar, Sparkles, Bell } from 'lucide-react';
 import { Button } from '@/components/common/Button';
 import { useFinance } from '@/context/FinanceContext';
 import { getMonthName } from '@/utils/date';
@@ -100,17 +100,6 @@ export const Header: React.FC<HeaderProps> = ({
             →
           </motion.button>
         </div>
-
-        {/* Download Project Documentation PDF */}
-        <a
-          href="/SmartPaisa_Project_Documentation.pdf"
-          download="SmartPaisa_Project_Documentation.pdf"
-          className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 text-xs font-semibold transition-colors"
-          title="Download Project Documentation PDF"
-        >
-          <FileDown className="w-3.5 h-3.5" />
-          <span>Docs PDF</span>
-        </a>
 
         {/* AI Assistant shortcut */}
         <Link to="/ai-assistant" className="hidden sm:inline-flex">

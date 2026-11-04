@@ -385,78 +385,78 @@ export const ExpensesPage: React.FC = () => {
             {/* Tablet & Desktop Table View */}
             <div className="hidden sm:block overflow-x-auto">
               <table className="w-full text-left text-xs sm:text-sm">
-              <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
-                <tr>
-                  <th className="py-3 px-4 sm:px-6">Transaction</th>
-                  <th className="py-3 px-3 sm:px-4">Category</th>
-                  <th className="py-3 px-3 sm:px-4 hidden sm:table-cell">Date</th>
-                  <th className="py-3 px-3 sm:px-4 hidden md:table-cell">Payment</th>
-                  <th className="py-3 px-4 sm:px-6 text-right">Amount (₹)</th>
-                  <th className="py-3 px-4 text-center">Actions</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {paginatedExpenses.map((exp, idx) => (
-                  <motion.tr
-                    key={exp.id}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.03 * idx, duration: 0.2 }}
-                    className="hover:bg-emerald-50/40 transition-colors"
-                  >
-                    <td className="py-3 px-4 sm:px-6">
-                      <div className="font-semibold text-slate-900">{exp.title}</div>
-                      {exp.notes && (
-                        <div className="text-[11px] text-slate-400 truncate max-w-xs mt-0.5">
-                          {exp.notes}
+                <thead className="bg-slate-50 text-slate-600 font-semibold border-b border-slate-200">
+                  <tr>
+                    <th className="py-3 px-4 sm:px-6">Transaction</th>
+                    <th className="py-3 px-3 sm:px-4">Category</th>
+                    <th className="py-3 px-3 sm:px-4 hidden sm:table-cell">Date</th>
+                    <th className="py-3 px-3 sm:px-4 hidden md:table-cell">Payment</th>
+                    <th className="py-3 px-4 sm:px-6 text-right">Amount (₹)</th>
+                    <th className="py-3 px-4 text-center">Actions</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {paginatedExpenses.map((exp, idx) => (
+                    <motion.tr
+                      key={exp.id}
+                      initial={{ opacity: 0, y: 8 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.03 * idx, duration: 0.2 }}
+                      className="hover:bg-emerald-50/40 transition-colors"
+                    >
+                      <td className="py-3 px-4 sm:px-6">
+                        <div className="font-semibold text-slate-900">{exp.title}</div>
+                        {exp.notes && (
+                          <div className="text-[11px] text-slate-400 truncate max-w-xs mt-0.5">
+                            {exp.notes}
+                          </div>
+                        )}
+                        <div className="text-[11px] text-slate-400 sm:hidden mt-0.5">
+                          {formatReadableDate(exp.expense_date)}
                         </div>
-                      )}
-                      <div className="text-[11px] text-slate-400 sm:hidden mt-0.5">
+                      </td>
+                      <td className="py-3 px-3 sm:px-4">
+                        <Badge variant="gray" size="sm">
+                          {exp.category}
+                        </Badge>
+                      </td>
+                      <td className="py-3 px-3 sm:px-4 hidden sm:table-cell text-slate-600">
                         {formatReadableDate(exp.expense_date)}
-                      </div>
-                    </td>
-                    <td className="py-3 px-3 sm:px-4">
-                      <Badge variant="gray" size="sm">
-                        {exp.category}
-                      </Badge>
-                    </td>
-                    <td className="py-3 px-3 sm:px-4 hidden sm:table-cell text-slate-600">
-                      {formatReadableDate(exp.expense_date)}
-                    </td>
-                    <td className="py-3 px-3 sm:px-4 hidden md:table-cell text-slate-500 font-mono text-xs">
-                      {exp.payment_method || '—'}
-                    </td>
-                    <td className="py-3 px-4 sm:px-6 text-right font-bold text-slate-900 whitespace-nowrap">
-                      -{formatINR(exp.amount)}
-                    </td>
-                    <td className="py-3 px-4 text-center whitespace-nowrap">
-                      <div className="flex items-center justify-center gap-2">
-                        <Button
-                          variant="ghost"
-                          size="sm"
-                          onClick={() => {
-                            setEditingExpense(exp);
-                            setIsAddModalOpen(true);
-                          }}
-                          icon={<Edit2 className="w-3.5 h-3.5 text-emerald-600" />}
-                          className="text-xs font-semibold text-slate-700 hover:text-emerald-700 hover:bg-emerald-50/60"
-                        >
-                          Edit
-                        </Button>
-                        <button
-                          onClick={() => setDeletingExpense(exp)}
-                          className="p-1.5 text-slate-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors"
-                          title="Delete Expense"
-                          aria-label={`Delete expense ${exp.title}`}
-                        >
-                          <Trash2 className="w-4 h-4" />
-                        </button>
-                      </div>
-                    </td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
+                      </td>
+                      <td className="py-3 px-3 sm:px-4 hidden md:table-cell text-slate-500 font-mono text-xs">
+                        {exp.payment_method || '—'}
+                      </td>
+                      <td className="py-3 px-4 sm:px-6 text-right font-bold text-slate-900 whitespace-nowrap">
+                        -{formatINR(exp.amount)}
+                      </td>
+                      <td className="py-3 px-4 text-center whitespace-nowrap">
+                        <div className="flex items-center justify-center gap-2">
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            onClick={() => {
+                              setEditingExpense(exp);
+                              setIsAddModalOpen(true);
+                            }}
+                            icon={<Edit2 className="w-3.5 h-3.5 text-emerald-600" />}
+                            className="text-xs font-semibold text-slate-700 hover:text-emerald-700 hover:bg-emerald-50/60"
+                          >
+                            Edit
+                          </Button>
+                          <button
+                            onClick={() => setDeletingExpense(exp)}
+                            className="p-1.5 text-slate-400 hover:text-red-600 rounded-lg hover:bg-red-50 transition-colors"
+                            title="Delete Expense"
+                            aria-label={`Delete expense ${exp.title}`}
+                          >
+                            <Trash2 className="w-4 h-4" />
+                          </button>
+                        </div>
+                      </td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </>
         )}
